@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
+    Transform CameraPos;
+    [SerializeField]
     int Gold = new int();
     [SerializeField]
     int Gems = new int();
@@ -16,6 +18,13 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
+        //Inputs
+        if (Input.GetMouseButtonDown(0))
+        {
+            GetMouseTarget();
+        }
+
+        //Check to see if heroes can respawn
         for (int i = 0; i < 3; i++)
         {
             if (!HeroesAlive[i])
@@ -34,5 +43,27 @@ public class GameManager : MonoBehaviour
     void SpawnHero(GameObject hero)
     {
 
+    }
+
+    GameObject GetMouseTarget()
+    {
+        GameObject target = new GameObject();
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit = new RaycastHit();
+
+        if (Physics.Raycast(ray, out hit , 100f))
+        {
+            Debug.DrawRay(CameraPos.position, (hit.point - CameraPos.position), Color.yellow, 100f);
+            Debug.Log("Did hit");
+
+            target = hit.collider.gameObject;
+            return target;
+        }
+        else
+        {
+            Debug.DrawRay(CameraPos.position, (hit.point - CameraPos.position), Color.red, 100f);
+            Debug.Log("Did not hit");
+            return null;
+        }
     }
 }
