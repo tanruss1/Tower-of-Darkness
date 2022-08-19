@@ -744,7 +744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8dcab66f1508349aa9424f92e28d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fireballs: {fileID: 0}
+  Fireballs: {fileID: 1634594574}
   damage: {fileID: 0}
   speed: 5
   cost: 10
@@ -806,6 +806,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b81d1ea5f3f011349a033aedb3424df5, type: 3}
+--- !u!54 &1634594574 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5992503241862987728, guid: b81d1ea5f3f011349a033aedb3424df5, type: 3}
+  m_PrefabInstance: {fileID: 1634594573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1728607411
 GameObject:
   m_ObjectHideFlags: 0
