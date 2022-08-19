@@ -9,11 +9,11 @@ public class WaveSpawner : MonoBehaviour
     public Transform enemyPrefab;
     public Transform SpawnPoint;
 
-    public float timeBetweenWaves = 10f;
-    private float countdown = 3f;
+    public float timeBetweenWaves = 3f;
+    private float countdown = 2f;
     private int waveIndex = 0;
     //add a text UI for this to hold
-    public Text waveCountDown;
+    //public Text waveCountDown;
 
     private void Update()
     {
