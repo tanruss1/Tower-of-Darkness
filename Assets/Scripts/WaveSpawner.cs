@@ -17,7 +17,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
-        if(countdown <= 0)
+        if(countdown <= 0 && enemyPrefab != null)
         {
             StartCoroutine(SpawnWave());
 
