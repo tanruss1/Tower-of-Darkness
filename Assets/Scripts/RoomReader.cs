@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class RoomReader : MonoBehaviour
 {
-    int enemiesLeft = 0;
+    int heroesLeft = 0;
     int minionsLeft = 0;
     
     
     // Update is called once per frame
     void Update()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
-        enemiesLeft = enemies.Length;
-        if (enemiesLeft >= 0)
+        GameObject[] heroes = GameObject.FindGameObjectsWithTag("Hero");
+        heroesLeft = heroes.Length;
+        if (heroesLeft >= 0)
         {
-            string enemyMessage = "There are" + enemiesLeft.ToString();
+            string enemyMessage = "There are" + heroesLeft.ToString() + " heroes left";
         }
-        if (enemiesLeft == 0)
+        if (heroesLeft == 0)
         {
             Debug.Log("enemiesGone");
         }
 
-        GameObject[] minions = GameObject.FindGameObjectsWithTag("minion");
-        enemiesLeft = enemies.Length;
+        GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");
+        heroesLeft = heroes.Length;
         if (minionsLeft >= 0)
         {
-            string minionMessage = "There are" + minionsLeft.ToString();
+            string minionMessage = "There are" + minionsLeft.ToString() + " minions left";
         }
         if (minionsLeft == 0)
         {
