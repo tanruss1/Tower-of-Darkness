@@ -8,7 +8,7 @@ public class Room_Trap : Room_Basic
     public enum TrapType { Arrow, Spike, Fire}
 
     float TimerMax = 10f;
-    int Damage;
+    private int Damage;
     [SerializeField]
     TrapType type = TrapType.Arrow;
 
