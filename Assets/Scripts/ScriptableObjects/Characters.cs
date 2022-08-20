@@ -10,9 +10,9 @@ namespace Units
         public enum CharacterTypes{ Boss, Goblin, Zombie, Skelton, Warrior, Ranger, Mage }
 
        public int Health;
-        int Attack;
-        int Speed;
-        int Range;
+       public int Attack;
+       public int Speed;
+       public int Range;
         int Level;
 
 
