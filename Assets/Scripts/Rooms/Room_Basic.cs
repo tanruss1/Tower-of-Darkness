@@ -14,10 +14,21 @@ public class Room_Basic : MonoBehaviour
     [SerializeField]
     public GameManager manager;
 
+    public bool canBuild = true;
     bool PoisonGasActive = false;
     float PoisonTimer = 1f;
     int PoisonCount = 0;
-    GameObject[] heroes = new GameObject[3];
+    public GameObject[] heroes = new GameObject[3];
+
+    private void Start()
+    {
+        GameObject[] objects = FindObjectsOfType<GameObject>();
+        foreach (GameObject _object in objects)
+        {
+            if (_object.GetComponent<GameManager>())
+                manager = _object.GetComponent<GameManager>();
+        }
+    }
 
     private void Update()
     {

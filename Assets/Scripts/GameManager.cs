@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int DarkAuraCost = 20;
 
+    [SerializeField]
+    public float ZombieSpawnChance = 0f;
+
     bool FireballReady = false;
     bool PoisonGasReady = false;
     bool DarkAuraReady = false;
@@ -175,6 +178,15 @@ public class GameManager : MonoBehaviour
             //Trigger buff, +2 attack and speed
         }
         DarkAuraReady = false;
+    }
+
+    void ZombieSpawnRoll(int level)
+    {
+        if (Random.value <= ZombieSpawnChance)
+        {
+            //replace GameObject with Zombie
+            SpawnMinion(new GameObject(), level);
+        }
     }
 
 }
