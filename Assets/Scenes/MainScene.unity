@@ -681,7 +681,10 @@ GameObject:
   m_PrefabInstance: {fileID: 1855058377}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
 --- !u!1001 &232284007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4403,7 +4406,10 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1805138882 stripped
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2609770376944622412, guid: a685907dad2bba147bda70697d531f25, type: 3}
   m_PrefabInstance: {fileID: 1492620121}

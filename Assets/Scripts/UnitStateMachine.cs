@@ -112,7 +112,7 @@ public class UnitStateMachine : MonoBehaviour
 
 
         Health = stats.Health;
-        MaxHealth = stats.MaxHealth;
+        MaxHealth = stats.Maxhealth;
         Attack = stats.Attack;
         AttackSpeed = stats.Speed;
         Range = stats.Range;
@@ -448,7 +448,11 @@ public class UnitStateMachine : MonoBehaviour
     public void DarkAura()
     {
         Attack += 2;
+<<<<<<< HEAD
         AttackSpeed += 2;
+=======
+        Speed += 2;
+>>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
 
         DarkAuraActive = true;
         DarkAuraTimer = 10f;
@@ -458,7 +462,11 @@ public class UnitStateMachine : MonoBehaviour
     public void EndDarkAura()
     { 
         Attack -= 2;
+<<<<<<< HEAD
         AttackSpeed -= 2;
+=======
+        Speed -= 2;
+>>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
 
         DarkAuraActive = false;
         Debug.Log("Dark Aura ended on " + this.gameObject.name);

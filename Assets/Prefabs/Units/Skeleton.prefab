@@ -115,6 +115,7 @@ MonoBehaviour:
   spawnSound: {fileID: 8300000, guid: 9e191b9291cf17e42a853a31c3ada166, type: 3}
   attackSound: {fileID: 8300000, guid: f1bf397ba74b3a442b2bd4c9ea56da77, type: 3}
   speed: 3
+<<<<<<< HEAD
   stats: {fileID: 11400000, guid: f70ab602397e3a944a6011a832e86194, type: 2}
   Health: 0
   MaxHealth: 0
@@ -252,6 +253,9 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+=======
+  stats: {fileID: 0}
+>>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
 --- !u!1001 &8741297670744703417
 PrefabInstance:
   m_ObjectHideFlags: 0

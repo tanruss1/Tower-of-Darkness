@@ -110,4 +110,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   units: 0
   character: {fileID: 11400000, guid: 2e62a6e349041434982016e78b7dde7a, type: 2}
-  machine: {fileID: 0}
