@@ -26,7 +26,7 @@ public class Room_Basic : MonoBehaviour
     float PoisonTimer = 1f;
     int PoisonCount = 0;
     public GameObject[] heroes;
-    public int UpgradeCost = 10;
+    public int UpgradeCost;
 
     private void Start()
     {
@@ -105,19 +105,8 @@ public class Room_Basic : MonoBehaviour
 
     public void SpawnMinion(GameObject minion, int level)
     {
-        Debug.Log("Attempting minion spawn in " + this.gameObject.name);
         GameObject _minion = Instantiate(minion, Spawnpoint, false);
         _minion.GetComponent<UnitStateMachine>().stats.Level = level;
         //Set _minion level to equal int level
-        if (_minion.transform.position != null)
-            Debug.Log("Minion spawned successfully");
-    }
-
-    public bool CanUpgrade()
-    {
-        if (manager.Gold >= UpgradeCost)
-            return true;
-        else 
-            return false;
     }
 }

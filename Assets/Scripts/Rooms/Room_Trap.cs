@@ -101,41 +101,21 @@ public class Room_Trap : Room_Basic
 
     void IncreaseHitProb()
     {
-        if (CanUpgrade())
-        {
-            manager.Gold -= UpgradeCost;
-            UpgradeCost =(int)(UpgradeCost * 1.5f);
-            HitProb += 0.01f;
-        }
+
     }
 
     void IncreaseHitChances()
     {
-        if (CanUpgrade())
-        {
-            manager.Gold -= UpgradeCost;
-            UpgradeCost = (int)(UpgradeCost * 1.5f);
-            HitChances += 1;
-        }
+
     }
 
     void IncreaseDamage()
     {
-        if (CanUpgrade())
-        {
-            manager.Gold -= UpgradeCost;
-            UpgradeCost = (int)(UpgradeCost * 1.5f);
-            Damage += 1;
-        }
+
     }
 
     void DecreaseTimer()
     {
-        if (CanUpgrade())
-        {
-            manager.Gold -= UpgradeCost;
-            UpgradeCost = (int)(UpgradeCost * 1.5f);
-            TimerMax -= 0.01f;
-        }
+
     }
 }

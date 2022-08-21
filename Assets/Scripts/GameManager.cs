@@ -97,28 +97,27 @@ public class GameManager : MonoBehaviour
 
     void SpawnHero(UnitStateMachine hero)
     {
-        Debug.Log("Spawning " + hero.gameObject.name);
-        hero.gameObject.transform.position = HeroSpawn.position;
-        hero.Health = hero.MaxHealth;
-        hero.isAlive = true;
-        hero.gameObject.SetActive(true);
-        hero.ChangeState(UnitStateMachine.states.Walking);
+        for (int i = 0; i < Heroes.Length; i++)
+        {
+            if (!Heroes[i].isAlive)
+            {
+                Heroes[i].gameObject.transform.position = HeroSpawn.position;
+                Heroes[i].Health = Heroes[i].MaxHealth;
+                Heroes[i].gameObject.SetActive(true);
+            }
+        }
     }
 
     public void SpawnMinion (GameObject minion, int level)
     {
-        Debug.Log("Minion spawn triggered in manager");
-        for (int i = 11; i >= 0; i--)
+        for (int i = 11; i <= 0; i--)
         {
             if (Rooms[i].gameObject.activeInHierarchy)
             {
-                Debug.Log("Spawning level " + level.ToString() + " " + minion.name + " in " + Rooms[i].gameObject.name);
-                Rooms[i].SpawnMinion(minion, level);
-                return;
+                Rooms[i].GetComponent<Room_Basic>().SpawnMinion(minion, level);
+                break;
             }
-            Debug.Log("Room " + Rooms[i].gameObject.name + " is inactive or not assigned");
         }
-        Debug.LogError("Failed to spawn minion");
     }
 
     GameObject GetMouseTarget()

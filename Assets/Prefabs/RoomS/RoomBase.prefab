@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363385449861208013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.73, y: 0.96, z: -4.006448}
+  m_LocalPosition: {x: 1, y: 3, z: -4.006448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 383850843706827507}
@@ -6927,13 +6927,6 @@ MonoBehaviour:
   Spawnpoint: {fileID: 0}
   FireballParticles: {fileID: 3603125121359982529}
   PoisonGasParticles: {fileID: 8852351585404258712}
-  manager: {fileID: 0}
-  MainText: 
-  Upgrade1_Text: 
-  Upgrade2_Text: 
-  canBuild: 1
-  heroes: []
-  UpgradeCost: 10
 --- !u!1 &2998741431658923449
 GameObject:
   m_ObjectHideFlags: 0
@@ -11821,7 +11814,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3832338825769933844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.542, y: 0.96, z: -4.006448}
+  m_LocalPosition: {x: 10.542, y: 3, z: -4.006448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 383850843706827507}
@@ -11837,7 +11830,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6856816538767163530}
   - component: {fileID: 590383275834347610}
-  - component: {fileID: 682456801362726767}
   m_Layer: 0
   m_Name: MinionTeleTrigger
   m_TagString: Untagged
@@ -11872,22 +11864,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &682456801362726767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5047872513700068121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd763d045bfa8e141a6c3d66394e0622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  tpHero: 0
-  tpMinion: 0
-  tpPoint: {fileID: 0}
 --- !u!65 &1700682738435993543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11924,7 +11900,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8705644333934065387}
   - component: {fileID: 8656408515793837104}
-  - component: {fileID: 8246613979062344963}
   m_Layer: 0
   m_Name: HeroTeleTrigger
   m_TagString: Untagged
@@ -11959,22 +11934,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8246613979062344963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8670142881608030408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd763d045bfa8e141a6c3d66394e0622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  tpHero: 0
-  tpMinion: 0
-  tpPoint: {fileID: 0}
 --- !u!1 &9149862565579272991
 GameObject:
   m_ObjectHideFlags: 0
