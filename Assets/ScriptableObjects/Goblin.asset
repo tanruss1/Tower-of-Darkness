@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   Health: 5
-  Attack: 1
+  MaxHealth: 5
+  Attack: 2
   Speed: 3
   Range: 1
+  Exp: 1
+  ExpToNext: 0
+  Level: 0

@@ -4,19 +4,42 @@ using UnityEngine;
 
 public class Room_Spawner : Room_Basic
 {
-    public enum SpawnerType { Zombie, Skeleton, Goblin};
     [SerializeField]
     float MaxTimer = 10f;
     float SpawnTimer = 10f;
     [SerializeField]
     int Level = 1;
     [SerializeField]
-    SpawnerType Minion;
+    GameObject Minion;
+    [SerializeField]
+    bool IsZombie = false;
+
 
     void Start()
     {
+        GameObject[] objects = FindObjectsOfType<GameObject>();
+        foreach (GameObject _object in objects)
+        {
+            if (_object.GetComponent<GameManager>())
+                manager = _object.GetComponent<GameManager>();
+        }
+
         SpawnTimer = MaxTimer;
         canBuild = false;
+
+        if (IsZombie)
+        {
+            Upgrade1 = IncreaseSpawnChance;
+            Upgrade1_Text = "Increase Spawn Chance";
+        }
+        else
+        {
+            Upgrade1 = IncreaseSpawnRate;
+            Upgrade1_Text = "Increase Spawn Rate";
+        }
+
+        Upgrade2 = IncreaseLevel;
+        Upgrade2_Text = "Increase Level";
     }
 
     // Update is called once per frame
@@ -25,25 +48,45 @@ public class Room_Spawner : Room_Basic
         SpawnTimer -= Time.deltaTime;
         if (SpawnTimer <= 0f)
         {
+            TriggerSpawn();
             SpawnTimer = MaxTimer;
         }
     }
 
     void TriggerSpawn()
     {
-        GameObject minion = new GameObject();
-        if (Minion == SpawnerType.Zombie)
+        Debug.Log("Triggering " + Minion.name + " spawn");
+        manager.SpawnMinion(Minion, Level);
+    }
+
+    public void IncreaseSpawnRate()
+    {
+        if (CanUpgrade())
         {
-            //minion = new Zombie;
+            manager.Gold -= UpgradeCost;
+            UpgradeCost = (int)(UpgradeCost * 1.5f);
+            MaxTimer -= 0.5f;
+            SpawnTimer -= 0.5f;
         }
-        else if (Minion == SpawnerType.Skeleton)
+    }
+
+    public void IncreaseLevel()
+    {
+        if (CanUpgrade())
         {
-            //minion = new Skeleton
+            manager.Gold -= UpgradeCost;
+            UpgradeCost = (int)(UpgradeCost * 1.5f);
+            Level += 1;
         }
-        else if (Minion == SpawnerType.Goblin)
+    }
+
+    public void IncreaseSpawnChance()
+    {
+        if (CanUpgrade())
         {
-            //minion = new Goblin
+            manager.Gold -= UpgradeCost;
+            UpgradeCost = (int)(UpgradeCost * 1.5f);
+            manager.ZombieSpawnChance += 0.1f;
         }
-        manager.SpawnMinion(minion, Level);
     }
 }

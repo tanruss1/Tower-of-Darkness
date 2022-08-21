@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,20 +15,30 @@ public class Room_Basic : MonoBehaviour
     [SerializeField]
     public GameManager manager;
 
+    public string MainText;
+    public UnityEngine.Events.UnityAction Upgrade1;
+    public string Upgrade1_Text;
+    public UnityEngine.Events.UnityAction Upgrade2;
+    public string Upgrade2_Text;
+
     public bool canBuild = true;
     bool PoisonGasActive = false;
     float PoisonTimer = 1f;
     int PoisonCount = 0;
-    public GameObject[] heroes = new GameObject[3];
+    public GameObject[] heroes;
+    public int UpgradeCost = 10;
 
     private void Start()
     {
+        heroes = new GameObject[3] { null, null, null };
+
         GameObject[] objects = FindObjectsOfType<GameObject>();
         foreach (GameObject _object in objects)
         {
             if (_object.GetComponent<GameManager>())
                 manager = _object.GetComponent<GameManager>();
         }
+
     }
 
     private void Update()
@@ -40,7 +51,7 @@ public class Room_Basic : MonoBehaviour
             {
                 foreach (GameObject hero in heroes)
                 {
-                    //Reduce health by 1
+                    hero.GetComponent<UnitStateMachine>().TakeDamage(1, this.gameObject);
                 }
                 PoisonTimer = 1f;
                 PoisonCount += 1;
@@ -79,10 +90,10 @@ public class Room_Basic : MonoBehaviour
 
     public void Fireball()
     {
+        FireballParticles.Play();
         foreach (GameObject hero in heroes)
         {
-            FireballParticles.Play();
-            //reduce health by 10
+            hero.GetComponent<UnitStateMachine>().TakeDamage(5, this.gameObject);
         }
     }
 
@@ -94,7 +105,19 @@ public class Room_Basic : MonoBehaviour
 
     public void SpawnMinion(GameObject minion, int level)
     {
+        Debug.Log("Attempting minion spawn in " + this.gameObject.name);
         GameObject _minion = Instantiate(minion, Spawnpoint, false);
+        _minion.GetComponent<UnitStateMachine>().stats.Level = level;
         //Set _minion level to equal int level
+        if (_minion.transform.position != null)
+            Debug.Log("Minion spawned successfully");
+    }
+
+    public bool CanUpgrade()
+    {
+        if (manager.Gold >= UpgradeCost)
+            return true;
+        else 
+            return false;
     }
 }

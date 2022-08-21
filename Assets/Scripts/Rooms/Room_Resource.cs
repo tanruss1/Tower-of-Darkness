@@ -37,4 +37,25 @@ public class Room_Resource : Room_Basic
         else
             manager.Gems += level;
     }
+
+    public void LevelUp()
+    {
+        if (CanUpgrade())
+        {
+            manager.Gold -= UpgradeCost;
+            UpgradeCost = (int)(UpgradeCost * 1.5f);
+            level += 1;
+        }
+    }
+
+    public void SpeedUp()
+    {
+        if (CanUpgrade())
+        {
+            manager.Gold -= UpgradeCost;
+            UpgradeCost = (int)(UpgradeCost * 1.5f);
+            TimerMax -= 0.5f;
+            Timer -= 0.5f;
+        }
+    }
 }
