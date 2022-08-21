@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 5038383779809224611}
   - component: {fileID: 6654533897407043398}
   - component: {fileID: 7744683309863419156}
+  - component: {fileID: 3267984722511528717}
+  - component: {fileID: 7543994687383867477}
+  - component: {fileID: 3811034741881913885}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +33,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9134965351070393938}
-  - {fileID: 8055757899871338259}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   units: 3
   character: {fileID: 11400000, guid: f70ab602397e3a944a6011a832e86194, type: 2}
+  machine: {fileID: 0}
 --- !u!136 &7744683309863419156
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -62,7 +65,6 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.41, z: 0}
-<<<<<<< HEAD
 --- !u!65 &3267984722511528717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105,14 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  manager: {fileID: 0}
-  source: {fileID: 7197499307365033352}
-  hitSound: {fileID: 8300000, guid: 9f02e92d8467edd4d94d58c1e9a60b20, type: 3}
-  deadSound: {fileID: 8300000, guid: a34e4fac8d68f2c43b7fc8d123fddbbe, type: 3}
-  spawnSound: {fileID: 8300000, guid: 9e191b9291cf17e42a853a31c3ada166, type: 3}
-  attackSound: {fileID: 8300000, guid: f1bf397ba74b3a442b2bd4c9ea56da77, type: 3}
   speed: 3
-<<<<<<< HEAD
   stats: {fileID: 11400000, guid: f70ab602397e3a944a6011a832e86194, type: 2}
   Health: 0
   MaxHealth: 0
@@ -122,139 +117,6 @@ MonoBehaviour:
   Exp: 0
   ExpToNext: 0
   Level: 0
-  isAlive: 1
---- !u!1 &6971050738337875237
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8055757899871338259}
-  - component: {fileID: 7197499307365033352}
-  m_Layer: 0
-  m_Name: Audio Source
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8055757899871338259
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6971050738337875237}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5038383779809224611}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &7197499307365033352
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6971050738337875237}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.002
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0.99768066
-      inSlope: -0.031312503
-      outSlope: -0.031312503
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.16352145
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-=======
-  stats: {fileID: 0}
->>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
-=======
->>>>>>> parent of 4c03e1d (Merge branch 'test')
 --- !u!1001 &8741297670744703417
 PrefabInstance:
   m_ObjectHideFlags: 0
