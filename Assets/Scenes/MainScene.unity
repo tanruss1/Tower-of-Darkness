@@ -2222,15 +2222,6 @@ MonoBehaviour:
   gameManager: {fileID: 773372063}
   GoldText: {fileID: 485067465}
   GemText: {fileID: 448299839}
-  popUpBox: {fileID: 0}
-  animator: {fileID: 0}
-  mainText: {fileID: 0}
-  button1: {fileID: 0}
-  button_1Text: {fileID: 0}
-  button_1Label: {fileID: 0}
-  button2: {fileID: 0}
-  button_2Text: {fileID: 0}
-  button_2Label: {fileID: 0}
 --- !u!1001 &828837589
 PrefabInstance:
   m_ObjectHideFlags: 0
