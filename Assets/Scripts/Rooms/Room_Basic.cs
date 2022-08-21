@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,30 +14,29 @@ public class Room_Basic : MonoBehaviour
     [SerializeField]
     public GameManager manager;
 
+<<<<<<< HEAD
     public string MainText;
     public UnityEngine.Events.UnityAction Upgrade1;
     public string Upgrade1_Text;
     public UnityEngine.Events.UnityAction Upgrade2;
     public string Upgrade2_Text;
 
+=======
+>>>>>>> parent of 4c03e1d (Merge branch 'test')
     public bool canBuild = true;
     bool PoisonGasActive = false;
     float PoisonTimer = 1f;
     int PoisonCount = 0;
-    public GameObject[] heroes;
-    public int UpgradeCost;
+    public GameObject[] heroes = new GameObject[3];
 
     private void Start()
     {
-        heroes = new GameObject[3] { null, null, null };
-
         GameObject[] objects = FindObjectsOfType<GameObject>();
         foreach (GameObject _object in objects)
         {
             if (_object.GetComponent<GameManager>())
                 manager = _object.GetComponent<GameManager>();
         }
-
     }
 
     private void Update()
@@ -106,7 +104,6 @@ public class Room_Basic : MonoBehaviour
     public void SpawnMinion(GameObject minion, int level)
     {
         GameObject _minion = Instantiate(minion, Spawnpoint, false);
-        _minion.GetComponent<UnitStateMachine>().stats.Level = level;
         //Set _minion level to equal int level
     }
 }

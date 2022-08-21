@@ -138,12 +138,9 @@ GameObject:
   - component: {fileID: 3142947849718724700}
   - component: {fileID: 4791658396750154948}
   - component: {fileID: 1403048927539676660}
-  - component: {fileID: 7380800926642374884}
-  - component: {fileID: 4713079531219579283}
-  - component: {fileID: 5809101159880168421}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Minion
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   units: 2
   character: {fileID: 11400000, guid: 0c39e195e1927f748b0f623f5a1ab021, type: 2}
-  machine: {fileID: 0}
 --- !u!136 &1403048927539676660
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -193,6 +189,7 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.41, z: 0}
+<<<<<<< HEAD
 --- !u!65 &7380800926642374884
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -256,6 +253,8 @@ MonoBehaviour:
 =======
   stats: {fileID: 0}
 >>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
+=======
+>>>>>>> parent of 4c03e1d (Merge branch 'test')
 --- !u!1001 &4965446334490396095
 PrefabInstance:
   m_ObjectHideFlags: 0

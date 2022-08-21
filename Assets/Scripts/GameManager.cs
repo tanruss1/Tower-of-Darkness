@@ -7,9 +7,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Transform CameraPos;
     [SerializeField]
+<<<<<<< HEAD
     Room_Basic[] Rooms;
     [SerializeField]
     Transform HeroSpawn;
+=======
+    GameObject[] Rooms;
+>>>>>>> parent of 4c03e1d (Merge branch 'test')
 
     [SerializeField]
     public int Gold = new int();
@@ -30,6 +34,7 @@ public class GameManager : MonoBehaviour
     bool PoisonGasReady = false;
     bool DarkAuraReady = false;
 
+<<<<<<< HEAD
     [SerializeField]
     UnitStateMachine[] Heroes;
 
@@ -41,14 +46,23 @@ public class GameManager : MonoBehaviour
     {
         
     }
+=======
+    GameObject[] Heroes = new GameObject[3];
+    bool[] HeroesAlive = new bool[3];
+    float[] HeroSpawnTimer = new float[3] { 10, 10, 10 };
+    GameObject[] Minions;
+    
+    
+>>>>>>> parent of 4c03e1d (Merge branch 'test')
     void Update()
     {
         //Inputs
         if (Input.GetMouseButtonDown(0))
         {
             GameObject target = GetMouseTarget();
-            if (target != null)
+            if (target.tag == "Room")
             {
+<<<<<<< HEAD
                 Debug.Log("target acquired");
                 if (target.GetComponent<Room_Basic>())
                 {
@@ -65,6 +79,15 @@ public class GameManager : MonoBehaviour
                         this.GetComponent<UIManager>().UpgradeRoomMenu(room.MainText, room.Upgrade1_Text, "Cost: " + room.UpgradeCost, room.Upgrade1, room. Upgrade2_Text, room.Upgrade2);
                     }
                 }
+=======
+                Debug.Log("targeted room");
+                if (FireballReady)
+                    CastFireball(target);
+                else if (PoisonGasReady)
+                    CastPoisonGas(target);
+                else if (DarkAuraReady)
+                    CastDarkAura(target);
+>>>>>>> parent of 4c03e1d (Merge branch 'test')
             }
         }
         else if (Input.GetKeyDown(KeyCode.Q))
@@ -112,10 +135,9 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 11; i <= 0; i--)
         {
-            if (Rooms[i].gameObject.activeInHierarchy)
+            if (Rooms[i].activeInHierarchy)
             {
                 Rooms[i].GetComponent<Room_Basic>().SpawnMinion(minion, level);
-                break;
             }
         }
     }
@@ -132,12 +154,17 @@ public class GameManager : MonoBehaviour
             Debug.Log("Did hit");
 
             target = hit.collider.gameObject;
+<<<<<<< HEAD
             if (target.GetComponent<Room_Basic>())
             {
                 //target = target.transform.parent.gameObject;
             }
             else
                 return null;
+=======
+            if (target.transform.parent.tag == "Room")
+                target = target.transform.parent.gameObject;
+>>>>>>> parent of 4c03e1d (Merge branch 'test')
 
             Debug.Log("hit " + target.ToString());
 
@@ -194,21 +221,18 @@ public class GameManager : MonoBehaviour
             Debug.Log("Dark Aura ready");
             DarkAuraReady = true;
             Gems -= DarkAuraCost;
-            CastDarkAura();
         }
-        else
-            Debug.Log("Not enough gems");
+        Debug.Log("Not enough gems");
     }
 
-    void CastDarkAura()
+    void CastDarkAura(GameObject target)
     {
         Minions = GameObject.FindGameObjectsWithTag("Minion");
         foreach (GameObject minion in Minions)
         {
-            minion.GetComponent<UnitStateMachine>().DarkAura();
+            //Trigger buff, +2 attack and speed
         }
         DarkAuraReady = false;
-        Debug.Log("Dark Aura Cast");
     }
 
     void ZombieSpawnRoll(int level)

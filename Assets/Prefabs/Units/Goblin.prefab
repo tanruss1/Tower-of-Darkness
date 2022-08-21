@@ -138,12 +138,9 @@ GameObject:
   - component: {fileID: 4900622072141121697}
   - component: {fileID: 5388287299070234920}
   - component: {fileID: 8386614326987387704}
-  - component: {fileID: 6433376209546893130}
-  - component: {fileID: 6939528343257718785}
-  - component: {fileID: 3930543991243235059}
   m_Layer: 0
   m_Name: Goblin
-  m_TagString: Minion
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   units: 1
   character: {fileID: 11400000, guid: db85b2e8a54e8d64f9c182885cf69679, type: 2}
-  machine: {fileID: 0}
 --- !u!136 &8386614326987387704
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -193,6 +189,7 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.41, z: 0}
+<<<<<<< HEAD
 --- !u!65 &6433376209546893130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -256,6 +253,8 @@ MonoBehaviour:
 =======
   stats: {fileID: 0}
 >>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
+=======
+>>>>>>> parent of 4c03e1d (Merge branch 'test')
 --- !u!1001 &5676607178474991456
 PrefabInstance:
   m_ObjectHideFlags: 0
