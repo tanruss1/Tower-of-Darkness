@@ -108,7 +108,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   speed: 3
-  stats: {fileID: 0}
+  stats: {fileID: 11400000, guid: 67f8bc1f0e6893c4291c834693d9ae34, type: 2}
+  Health: 0
+  MaxHealth: 0
+  Attack: 0
+  AttackSpeed: 0
+  Range: 0
+  Exp: 0
+  ExpToNext: 0
+  Level: 0
 --- !u!1001 &7626996666350441086
 PrefabInstance:
   m_ObjectHideFlags: 0
