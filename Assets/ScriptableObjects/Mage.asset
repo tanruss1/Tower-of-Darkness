@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Mage
   m_EditorClassIdentifier: 
   Health: 3
-  MaxHealth: 3
   Attack: 3
   Speed: 2
   Range: 2
-  Exp: 0

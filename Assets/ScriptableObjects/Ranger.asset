@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Ranger
   m_EditorClassIdentifier: 
   Health: 5
-  MaxHealth: 5
   Attack: 1
   Speed: 3
   Range: 2
-  Exp: 0

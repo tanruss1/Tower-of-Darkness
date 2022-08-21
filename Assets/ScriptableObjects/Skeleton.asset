@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   Health: 4
-  MaxHealth: 4
   Attack: 3
   Speed: 2
   Range: 3
-  Exp: 2
