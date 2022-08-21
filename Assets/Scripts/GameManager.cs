@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     Transform CameraPos;
     [SerializeField]
     Room_Basic[] Rooms;
+    [SerializeField]
+    Transform HeroSpawn;
 
     [SerializeField]
     public int Gold = new int();
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
     bool DarkAuraReady = false;
 
     [SerializeField]
-    GameObject[] Heroes;
+    UnitStateMachine[] Heroes;
 
     bool[] HeroesAlive = new bool[3];
     float[] HeroSpawnTimer = new float[3] { 10, 10, 10 };
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Heroes = new GameObject[3];
+        
     }
     void Update()
     {
@@ -47,8 +49,10 @@ public class GameManager : MonoBehaviour
             GameObject target = GetMouseTarget();
             if (target != null)
             {
+                Debug.Log("target acquired");
                 if (target.GetComponent<Room_Basic>())
                 {
+                    Room_Basic room = target.GetComponent<Room_Basic>();
                     Debug.Log("targeted room");
                     if (FireballReady)
                         CastFireball(target);
@@ -56,6 +60,10 @@ public class GameManager : MonoBehaviour
                         CastPoisonGas(target);
                     else if (DarkAuraReady)
                         CastDarkAura();
+                    else if (target.GetComponent<Room_Basic>().canBuild)
+                    {
+                        this.GetComponent<UIManager>().UpgradeRoomMenu(room.MainText, room.Upgrade1_Text, "Cost: " + room.UpgradeCost, room.Upgrade1, room. Upgrade2_Text, room.Upgrade2);
+                    }
                 }
             }
         }
@@ -73,24 +81,31 @@ public class GameManager : MonoBehaviour
         }
 
         //Check to see if heroes can respawn
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < Heroes.Length; i++)
         {
-            if (!HeroesAlive[i])
+            if (!Heroes[i].isAlive)
             {
                 HeroSpawnTimer[i] -= Time.deltaTime;
                 if (HeroSpawnTimer[i] <= 0)
                 {
                     SpawnHero(Heroes[i]);
-                    HeroesAlive[i] = true;
                     HeroSpawnTimer[i] = 10;
                 }
             }
         }
     }
 
-    void SpawnHero(GameObject hero)
+    void SpawnHero(UnitStateMachine hero)
     {
-
+        for (int i = 0; i < Heroes.Length; i++)
+        {
+            if (!Heroes[i].isAlive)
+            {
+                Heroes[i].gameObject.transform.position = HeroSpawn.position;
+                Heroes[i].Health = Heroes[i].MaxHealth;
+                Heroes[i].gameObject.SetActive(true);
+            }
+        }
     }
 
     public void SpawnMinion (GameObject minion, int level)

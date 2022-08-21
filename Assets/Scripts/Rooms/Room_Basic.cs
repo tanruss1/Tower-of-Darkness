@@ -15,9 +15,10 @@ public class Room_Basic : MonoBehaviour
     [SerializeField]
     public GameManager manager;
 
-    public Action Upgrade1;
+    public string MainText;
+    public UnityEngine.Events.UnityAction Upgrade1;
     public string Upgrade1_Text;
-    public Action Upgrade2;
+    public UnityEngine.Events.UnityAction Upgrade2;
     public string Upgrade2_Text;
 
     public bool canBuild = true;
