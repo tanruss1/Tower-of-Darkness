@@ -52,7 +52,7 @@ public class Room_Basic : MonoBehaviour
             {
                 foreach (GameObject hero in heroes)
                 {
-                    hero.GetComponent<UnitStateMachine>().TakeDamage(1, this.gameObject);
+                    //Reduce health by 1
                 }
                 PoisonTimer = 1f;
                 PoisonCount += 1;
@@ -91,10 +91,10 @@ public class Room_Basic : MonoBehaviour
 
     public void Fireball()
     {
-        FireballParticles.Play();
         foreach (GameObject hero in heroes)
         {
-            hero.GetComponent<UnitStateMachine>().TakeDamage(5, this.gameObject);
+            FireballParticles.Play();
+            //reduce health by 10
         }
     }
 
