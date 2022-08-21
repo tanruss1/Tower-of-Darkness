@@ -17,6 +17,17 @@ public class UnitStateMachine : MonoBehaviour
     [SerializeField]
     GameManager manager;
 
+    [SerializeField]
+    AudioSource source;
+    [SerializeField]
+    AudioClip hitSound;
+    [SerializeField]
+    AudioClip deadSound;
+    [SerializeField]
+    AudioClip spawnSound;
+    [SerializeField]
+    AudioClip attackSound;
+
     //Define the states
     public enum states
     {
@@ -68,6 +79,7 @@ public class UnitStateMachine : MonoBehaviour
         collider = this.GetComponent<BoxCollider>();
         stats = GetComponent<CharacterCreation>().character;
         manager = GameObject.FindWithTag("Manager").GetComponent<GameManager>();
+        source = manager.GetComponent<AudioSource>();
 
         //Load the main Enter functions into the state machine
         stateEnter.Add(states.Idle, Idle_Enter);
@@ -111,6 +123,8 @@ public class UnitStateMachine : MonoBehaviour
         timer = cooldown;
         collider.size = new Vector3(0.5f, 0.5f, stats.Range * 1.25f);
         collider.center = new Vector3(0, 1, 0.5f + (float)stats.Range / 1.5f);
+
+        source.PlayOneShot(spawnSound, 1);
     }
 
     // Update is called once per frame
@@ -250,6 +264,7 @@ public class UnitStateMachine : MonoBehaviour
 
     void Dead_Enter()
     {
+        source.PlayOneShot(deadSound, 1);
         Debug.Log(this.gameObject.name + " is dead");
         Destroy(this.gameObject);
     }
@@ -276,6 +291,15 @@ public class UnitStateMachine : MonoBehaviour
 
     void Walking_Update()
     {
+        for (int i = 0; i < 4; i++)
+        {
+            if (targets[i] != null)
+            {
+                ChangeState(states.Attack);
+                timer = cooldown;
+                break;
+            }
+        }
         rb.velocity = rb.transform.forward * speed;
     }
 
@@ -284,13 +308,16 @@ public class UnitStateMachine : MonoBehaviour
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
+            source.PlayOneShot(attackSound, 1);
             timer = cooldown;
             ChangeState(states.Idle);
             Debug.Log(this.gameObject.name + " attacked");
-            foreach (GameObject target in targets)
+            for (int i = 0; i < targets.Length; i++)
             {
-                if (target != null)
-                    target.GetComponent<UnitStateMachine>().TakeDamage(Attack, this.gameObject);
+                if (targets[i] != null)
+                    targets[i].GetComponent<UnitStateMachine>().TakeDamage(Attack, this.gameObject);
+                if (!targets[i].GetComponent<UnitStateMachine>().isAlive)
+                    targets[i] = null;
             }
         }
     }
@@ -356,6 +383,7 @@ public class UnitStateMachine : MonoBehaviour
 
     void Hero_Dead_Enter()
     {
+        source.PlayOneShot(deadSound, 1);
         Debug.Log(this.gameObject.name + " has died");
         isAlive = false;
         this.gameObject.SetActive(false);
@@ -381,7 +409,9 @@ public class UnitStateMachine : MonoBehaviour
                         attacker.GetComponent<UnitStateMachine>().GainExp(Exp);
                 Debug.Log(attacker.name + " killed " + this.gameObject.name);
                 ChangeState(states.Dead);
+                return;
             }
+            source.PlayOneShot(hitSound, 1);
         }
     }
 
