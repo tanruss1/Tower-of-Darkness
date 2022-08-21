@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363385449861208013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.73, y: 0.96, z: -4.006448}
+  m_LocalPosition: {x: 1, y: 0.96, z: -4.006448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 383850843706827507}
@@ -4906,9 +4906,9 @@ GameObject:
   - component: {fileID: 4461764001785253622}
   - component: {fileID: 7852972168738721655}
   - component: {fileID: 4873469360387421035}
-  - component: {fileID: 5555275104356359239}
+  - component: {fileID: 6477827539050255995}
   m_Layer: 0
-  m_Name: RoomBase
+  m_Name: RoomGoblinDen
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6912,7 +6912,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 12.015026, y: 7.0076737, z: 8.012896}
   m_Center: {x: 4.99749, y: 3.5038369, z: -4.006448}
---- !u!114 &5555275104356359239
+--- !u!114 &6477827539050255995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6921,19 +6921,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2609770376944622412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e3694bb5fd661445bdce202e565dd48, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f2e4b99e6100fb4b98a92fa4afb6992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spawnpoint: {fileID: 0}
+  Spawnpoint: {fileID: 712843954583808038}
   FireballParticles: {fileID: 3603125121359982529}
   PoisonGasParticles: {fileID: 8852351585404258712}
   manager: {fileID: 0}
   MainText: 
   Upgrade1_Text: 
   Upgrade2_Text: 
-  canBuild: 1
-  heroes: []
+  canBuild: 0
+  heroes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   UpgradeCost: 10
+  MaxTimer: 10
+  Level: 1
+  Minion: {fileID: 6852974903950137838, guid: e2420a720f3ade14c823e99ba377b88a, type: 3}
+  IsZombie: 0
 --- !u!1 &2998741431658923449
 GameObject:
   m_ObjectHideFlags: 0
@@ -11837,7 +11844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6856816538767163530}
   - component: {fileID: 590383275834347610}
-  - component: {fileID: 682456801362726767}
+  - component: {fileID: 2730402405495539917}
   m_Layer: 0
   m_Name: MinionTeleTrigger
   m_TagString: Untagged
@@ -11872,7 +11879,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &682456801362726767
+--- !u!114 &2730402405495539917
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11924,7 +11931,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8705644333934065387}
   - component: {fileID: 8656408515793837104}
-  - component: {fileID: 8246613979062344963}
+  - component: {fileID: 6142347828012858441}
   m_Layer: 0
   m_Name: HeroTeleTrigger
   m_TagString: Untagged
@@ -11959,7 +11966,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8246613979062344963
+--- !u!114 &6142347828012858441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
