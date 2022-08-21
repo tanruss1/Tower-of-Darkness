@@ -10,14 +10,7 @@ public class Room_Resource : Room_Basic
     [SerializeField]
     int level = 1;
     [SerializeField]
-    float TimerMax;
-
     float Timer = 10f;
-    
-    void Start()
-    {
-        canBuild = false;
-    }
 
     // Update is called once per frame
     void Update()
@@ -25,7 +18,7 @@ public class Room_Resource : Room_Basic
         Timer -= Time.deltaTime;
         if (Timer <= 0)
         {
-            Timer = TimerMax;
+            Timer = 10f;
             GiveResource();
         }
     }
