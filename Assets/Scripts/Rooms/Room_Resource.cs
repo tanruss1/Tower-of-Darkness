@@ -10,14 +10,7 @@ public class Room_Resource : Room_Basic
     [SerializeField]
     int level = 1;
     [SerializeField]
-    float TimerMax;
-
     float Timer = 10f;
-    
-    void Start()
-    {
-        canBuild = false;
-    }
 
     // Update is called once per frame
     void Update()
@@ -25,7 +18,7 @@ public class Room_Resource : Room_Basic
         Timer -= Time.deltaTime;
         if (Timer <= 0)
         {
-            Timer = TimerMax;
+            Timer = 10f;
             GiveResource();
         }
     }
@@ -36,5 +29,26 @@ public class Room_Resource : Room_Basic
             manager.Gold += level;
         else
             manager.Gems += level;
+    }
+
+    public void LevelUp()
+    {
+        if (CanUpgrade())
+        {
+            manager.Gold -= UpgradeCost;
+            UpgradeCost = (int)(UpgradeCost * 1.5f);
+            level += 1;
+        }
+    }
+
+    public void SpeedUp()
+    {
+        if (CanUpgrade())
+        {
+            manager.Gold -= UpgradeCost;
+            UpgradeCost = (int)(UpgradeCost * 1.5f);
+            TimerMax -= 0.5f;
+            Timer -= 0.5f;
+        }
     }
 }
