@@ -58,6 +58,7 @@ public class UnitStateMachine : MonoBehaviour
     public int Level;
     public bool isAlive = true;
 
+    private float DamageTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -123,6 +124,8 @@ public class UnitStateMachine : MonoBehaviour
             if (DarkAuraTimer <= 0)
                 EndDarkAura();
         }
+        if (DamageTimer > 0)
+            DamageTimer -= Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -281,14 +284,14 @@ public class UnitStateMachine : MonoBehaviour
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
-            //Debug.Log("attacked");
+            timer = cooldown;
+            ChangeState(states.Idle);
+            Debug.Log(this.gameObject.name + " attacked");
             foreach (GameObject target in targets)
             {
                 if (target != null)
                     target.GetComponent<UnitStateMachine>().TakeDamage(Attack, this.gameObject);
             }
-            timer = cooldown;
-            ChangeState(states.Idle);
         }
     }
 
@@ -366,15 +369,19 @@ public class UnitStateMachine : MonoBehaviour
     //These functions apply changes to the character's stats
     public void TakeDamage(int damage, GameObject attacker)
     {
-        Health -= damage;
-        //Debug.Log(this.gameObject + " has " + Health + " health remaining");
-        if (Health <= 0)
+        if (DamageTimer <= 0)
         {
-            if (Type == UnitType.Minion && attacker.GetComponent<UnitStateMachine>())
-                if (attacker.GetComponent<UnitStateMachine>().Type == UnitType.Hero)
-                    attacker.GetComponent<UnitStateMachine>().GainExp(Exp);
-
-            ChangeState(states.Dead);
+            Health -= damage;
+            DamageTimer = 0.5f;
+            //Debug.Log(this.gameObject + " has " + Health + " health remaining");
+            if (Health <= 0)
+            {
+                if (Type == UnitType.Minion && attacker.GetComponent<UnitStateMachine>())
+                    if (attacker.GetComponent<UnitStateMachine>().Type == UnitType.Hero)
+                        attacker.GetComponent<UnitStateMachine>().GainExp(Exp);
+                Debug.Log(attacker.name + " killed " + this.gameObject.name);
+                ChangeState(states.Dead);
+            }
         }
     }
 
@@ -415,7 +422,7 @@ public class UnitStateMachine : MonoBehaviour
 
         DarkAuraActive = true;
         DarkAuraTimer = 10f;
-        //Debug.Log("Dark Aura activated on " + this.gameObject.name);
+        Debug.Log("Dark Aura activated on " + this.gameObject.name);
     }
 
     public void EndDarkAura()
@@ -424,5 +431,6 @@ public class UnitStateMachine : MonoBehaviour
         AttackSpeed -= 2;
 
         DarkAuraActive = false;
+        Debug.Log("Dark Aura ended on " + this.gameObject.name);
     }
 }

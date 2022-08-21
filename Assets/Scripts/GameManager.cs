@@ -133,12 +133,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("Did hit");
 
             target = hit.collider.gameObject;
-            if (target.transform.parent.tag == "Room")
-                target = target.transform.parent.gameObject;
+            if (target.GetComponent<Room_Basic>())
+            {
+                //target = target.transform.parent.gameObject;
+            }
             else
                 return null;
 
-            Debug.Log(target.ToString());
+            Debug.Log("hit " + target.ToString());
 
             return target;
         }
