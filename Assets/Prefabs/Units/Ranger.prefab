@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   speed: 3
+<<<<<<< HEAD
   stats: {fileID: 11400000, guid: 67f8bc1f0e6893c4291c834693d9ae34, type: 2}
   Health: 0
   MaxHealth: 0
@@ -116,6 +117,9 @@ MonoBehaviour:
   Level: 0
 =======
 >>>>>>> parent of eb49d09 (Worked on like. Everything.)
+=======
+  stats: {fileID: 0}
+>>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
 --- !u!1001 &7626996666350441086
 PrefabInstance:
   m_ObjectHideFlags: 0

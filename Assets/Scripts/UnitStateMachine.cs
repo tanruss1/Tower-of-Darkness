@@ -99,6 +99,23 @@ public class UnitStateMachine : MonoBehaviour
             Minion();
         else
             Hero();
+<<<<<<< HEAD
+=======
+
+
+        Health = stats.Health;
+        MaxHealth = stats.Maxhealth;
+        Attack = stats.Attack;
+        AttackSpeed = stats.Speed;
+        Range = stats.Range;
+        Exp = stats.Exp;
+        ExpToNext = stats.ExpToNext;
+        Level = stats.Level;
+        cooldown = 1.5f - (stats.Speed * 0.25f);
+        timer = cooldown;
+        collider.size = new Vector3(0.5f, 0.5f, stats.Range * 1.25f);
+        collider.center = new Vector3(0, 1, 0.5f + (float)stats.Range / 1.5f);
+>>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
     }
 
     // Update is called once per frame
@@ -414,7 +431,11 @@ public class UnitStateMachine : MonoBehaviour
     {
         Attack += 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
         AttackSpeed += 2;
+=======
+        Speed += 2;
+>>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
 =======
         Speed += 2;
 >>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
@@ -428,7 +449,11 @@ public class UnitStateMachine : MonoBehaviour
     { 
         Attack -= 2;
 <<<<<<< HEAD
+<<<<<<< HEAD
         AttackSpeed -= 2;
+=======
+        Speed -= 2;
+>>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
 =======
         Speed -= 2;
 >>>>>>> parent of de7c832 (fixed health call and speed, put scriptable objects on prefabs)
