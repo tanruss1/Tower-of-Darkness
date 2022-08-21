@@ -95,7 +95,7 @@ public class UnitStateMachine : MonoBehaviour
 
 
         Health = stats.Health;
-        MaxHealth = stats.Maxhealth;
+        MaxHealth = stats.MaxHealth;
         Attack = stats.Attack;
         AttackSpeed = stats.Speed;
         Range = stats.Range;
@@ -371,7 +371,7 @@ public class UnitStateMachine : MonoBehaviour
     public void DarkAura()
     {
         Attack += 2;
-        Speed += 2;
+        speed += 2;
 
         DarkAuraActive = true;
         DarkAuraTimer = 10f;
@@ -381,7 +381,7 @@ public class UnitStateMachine : MonoBehaviour
     public void EndDarkAura()
     { 
         Attack -= 2;
-        Speed -= 2;
+        speed -= 2;
 
         DarkAuraActive = false;
     }
