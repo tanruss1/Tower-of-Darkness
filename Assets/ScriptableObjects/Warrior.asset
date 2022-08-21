@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9194ed96c98204b97fcd795070d15b, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  Health: 7
+  Health: -1
+  MaxHealth: 7
   Attack: 2
   Speed: 1
   Range: 1
+  Exp: 0
+  ExpToNext: 10
+  Level: 0
