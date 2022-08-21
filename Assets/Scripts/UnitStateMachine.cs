@@ -13,7 +13,7 @@ public class UnitStateMachine : MonoBehaviour
     public enum UnitType { Boss, Minion, Hero};
 
     [SerializeField]
-    UnitType Type = UnitType.Boss;
+    public UnitType Type = UnitType.Boss;
     [SerializeField]
     GameManager manager;
 
@@ -247,7 +247,7 @@ public class UnitStateMachine : MonoBehaviour
 
     void Dead_Enter()
     {
-        //Debug.Log(this.gameObject.name + " is dead");
+        Debug.Log(this.gameObject.name + " is dead");
         Destroy(this.gameObject);
     }
 
@@ -284,7 +284,8 @@ public class UnitStateMachine : MonoBehaviour
             //Debug.Log("attacked");
             foreach (GameObject target in targets)
             {
-                target.GetComponent<UnitStateMachine>().TakeDamage(Attack, this.gameObject);
+                if (target != null)
+                    target.GetComponent<UnitStateMachine>().TakeDamage(Attack, this.gameObject);
             }
             timer = cooldown;
             ChangeState(states.Idle);
@@ -352,6 +353,7 @@ public class UnitStateMachine : MonoBehaviour
 
     void Hero_Dead_Enter()
     {
+        Debug.Log(this.gameObject.name + " has died");
         isAlive = false;
         this.gameObject.SetActive(false);
     }
@@ -402,6 +404,8 @@ public class UnitStateMachine : MonoBehaviour
             Exp -= ExpToNext;
             ExpToNext += 10;
         }
+
+        Debug.Log(this.gameObject.name + " has reached level " + Level);
     }
 
     public void DarkAura()
