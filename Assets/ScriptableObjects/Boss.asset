@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   Health: 25
+  MaxHealth: 25
   Attack: 2
   Speed: 3
   Range: 5
+  Exp: 1000
