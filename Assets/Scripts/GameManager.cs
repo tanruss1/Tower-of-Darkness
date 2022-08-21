@@ -21,9 +21,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int DarkAuraCost = 20;
 
-    [SerializeField]
-    public float ZombieSpawnChance = 0f;
-
     bool FireballReady = false;
     bool PoisonGasReady = false;
     bool DarkAuraReady = false;
@@ -192,15 +189,6 @@ public class GameManager : MonoBehaviour
         }
         DarkAuraReady = false;
         Debug.Log("Dark Aura Cast");
-    }
-
-    void ZombieSpawnRoll(int level)
-    {
-        if (Random.value <= ZombieSpawnChance)
-        {
-            //replace GameObject with Zombie
-            SpawnMinion(new GameObject(), level);
-        }
     }
 
 }
