@@ -10,6 +10,7 @@ using Units;
 [RequireComponent(typeof(CharacterCreation))]
 public class UnitStateMachine : MonoBehaviour
 {
+    Rigidbody rb;
     public enum UnitType { Boss, Minion, Hero};
 
     [SerializeField]
@@ -37,10 +38,9 @@ public class UnitStateMachine : MonoBehaviour
     [SerializeField]
     private int speed = 3;
 
-    Rigidbody rb;
-    private float timer = 0.5f;
-    private float cooldown = 0.5f;
+    private float timer = 1.0f;
     private GameObject[] targets = { null, null, null, null };
+<<<<<<< HEAD
     private GameObject obj;
     private BoxCollider collider;
     public Characters stats;
@@ -57,6 +57,9 @@ public class UnitStateMachine : MonoBehaviour
     public int ExpToNext;
     public int Level;
     public bool isAlive = true;
+=======
+    private Characters stats;
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
 
     private float DamageTimer = 0f;
 
@@ -65,7 +68,6 @@ public class UnitStateMachine : MonoBehaviour
     {
 
         rb = this.GetComponent<Rigidbody>();
-        collider = this.GetComponent<BoxCollider>();
         stats = GetComponent<CharacterCreation>().character;
         manager = GameObject.FindWithTag("Manager").GetComponent<GameManager>();
 
@@ -97,26 +99,13 @@ public class UnitStateMachine : MonoBehaviour
             Minion();
         else
             Hero();
-
-
-        Health = stats.Health;
-        MaxHealth = stats.Maxhealth;
-        Attack = stats.Attack;
-        AttackSpeed = stats.Speed;
-        Range = stats.Range;
-        Exp = stats.Exp;
-        ExpToNext = stats.ExpToNext;
-        Level = stats.Level;
-        cooldown = 1.5f - (stats.Speed * 0.25f);
-        timer = cooldown;
-        collider.size = new Vector3(0.5f, 0.5f, stats.Range * 1.25f);
-        collider.center = new Vector3(0, 1, 0.5f + (float)stats.Range / 1.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
         stateUpdate[curState].Invoke();
+<<<<<<< HEAD
 
         if (DarkAuraActive)
         {
@@ -126,6 +115,8 @@ public class UnitStateMachine : MonoBehaviour
         }
         if (DamageTimer > 0)
             DamageTimer -= Time.deltaTime;
+=======
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
     }
 
     private void OnTriggerEnter(Collider other)
@@ -218,13 +209,14 @@ public class UnitStateMachine : MonoBehaviour
     }
 
     //The following function controls the state machine
-    public void ChangeState(states newState)
+    void ChangeState(states newState)
     {
         prevState = curState;
         curState = newState;
         stateExit[prevState].Invoke();
         stateEnter[curState].Invoke();
     }
+
 
     //The following functions are the base states that will be used unless the selected enum has a special one
     //Enter functions
@@ -250,8 +242,7 @@ public class UnitStateMachine : MonoBehaviour
 
     void Dead_Enter()
     {
-        Debug.Log(this.gameObject.name + " is dead");
-        Destroy(this.gameObject);
+
     }
 
     //Update functions
@@ -265,12 +256,11 @@ public class UnitStateMachine : MonoBehaviour
                 if (targets[i] != null)
                 {
                     ChangeState(states.Attack);
-                    timer = cooldown;
+                    timer = 1f;
                     break;
                 }
             }
-            ChangeState(states.Walking);
-            timer = cooldown;
+            timer = 1f;
         }
     }
 
@@ -284,7 +274,11 @@ public class UnitStateMachine : MonoBehaviour
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
+<<<<<<< HEAD
             timer = cooldown;
+=======
+            timer = 1f;
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
             ChangeState(states.Idle);
             Debug.Log(this.gameObject.name + " attacked");
             foreach (GameObject target in targets)
@@ -366,6 +360,7 @@ public class UnitStateMachine : MonoBehaviour
 
     }
 
+<<<<<<< HEAD
     //These functions apply changes to the character's stats
     public void TakeDamage(int damage, GameObject attacker)
     {
@@ -441,4 +436,6 @@ public class UnitStateMachine : MonoBehaviour
         DarkAuraActive = false;
         Debug.Log("Dark Aura ended on " + this.gameObject.name);
     }
+=======
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
 }

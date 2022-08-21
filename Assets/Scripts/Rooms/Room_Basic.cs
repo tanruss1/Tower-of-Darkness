@@ -15,6 +15,7 @@ public class Room_Basic : MonoBehaviour
     public GameManager manager;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public string MainText;
     public UnityEngine.Events.UnityAction Upgrade1;
     public string Upgrade1_Text;
@@ -23,6 +24,8 @@ public class Room_Basic : MonoBehaviour
 
 =======
 >>>>>>> parent of 4c03e1d (Merge branch 'test')
+=======
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
     public bool canBuild = true;
     bool PoisonGasActive = false;
     float PoisonTimer = 1f;

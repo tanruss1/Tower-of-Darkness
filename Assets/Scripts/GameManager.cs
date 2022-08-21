@@ -8,12 +8,16 @@ public class GameManager : MonoBehaviour
     Transform CameraPos;
     [SerializeField]
 <<<<<<< HEAD
+<<<<<<< HEAD
     Room_Basic[] Rooms;
     [SerializeField]
     Transform HeroSpawn;
 =======
     GameObject[] Rooms;
 >>>>>>> parent of 4c03e1d (Merge branch 'test')
+=======
+    GameObject[] Rooms;
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
 
     [SerializeField]
     public int Gold = new int();
@@ -35,6 +39,7 @@ public class GameManager : MonoBehaviour
     bool DarkAuraReady = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     [SerializeField]
     UnitStateMachine[] Heroes;
 
@@ -54,6 +59,14 @@ public class GameManager : MonoBehaviour
     
     
 >>>>>>> parent of 4c03e1d (Merge branch 'test')
+=======
+    GameObject[] Heroes = new GameObject[3];
+    bool[] HeroesAlive = new bool[3];
+    float[] HeroSpawnTimer = new float[3] { 10, 10, 10 };
+    GameObject[] Minions;
+    
+    
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
     void Update()
     {
         //Inputs
@@ -62,6 +75,7 @@ public class GameManager : MonoBehaviour
             GameObject target = GetMouseTarget();
             if (target.tag == "Room")
             {
+<<<<<<< HEAD
 <<<<<<< HEAD
                 Debug.Log("target acquired");
                 if (target.GetComponent<Room_Basic>())
@@ -80,6 +94,8 @@ public class GameManager : MonoBehaviour
                     }
                 }
 =======
+=======
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
                 Debug.Log("targeted room");
                 if (FireballReady)
                     CastFireball(target);
@@ -87,7 +103,10 @@ public class GameManager : MonoBehaviour
                     CastPoisonGas(target);
                 else if (DarkAuraReady)
                     CastDarkAura(target);
+<<<<<<< HEAD
 >>>>>>> parent of 4c03e1d (Merge branch 'test')
+=======
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
             }
         }
         else if (Input.GetKeyDown(KeyCode.Q))
@@ -155,6 +174,7 @@ public class GameManager : MonoBehaviour
 
             target = hit.collider.gameObject;
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (target.GetComponent<Room_Basic>())
             {
                 //target = target.transform.parent.gameObject;
@@ -165,6 +185,10 @@ public class GameManager : MonoBehaviour
             if (target.transform.parent.tag == "Room")
                 target = target.transform.parent.gameObject;
 >>>>>>> parent of 4c03e1d (Merge branch 'test')
+=======
+            if (target.transform.parent.tag == "Room")
+                target = target.transform.parent.gameObject;
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
 
             Debug.Log("hit " + target.ToString());
 

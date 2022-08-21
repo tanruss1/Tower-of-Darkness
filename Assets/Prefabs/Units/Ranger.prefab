@@ -11,12 +11,9 @@ GameObject:
   - component: {fileID: 3247554530485065462}
   - component: {fileID: 8176020781725875042}
   - component: {fileID: 3366770728657827520}
-  - component: {fileID: 279264258112888720}
-  - component: {fileID: 6783568592580811337}
-  - component: {fileID: 3174615630511713942}
   m_Layer: 0
   m_Name: Ranger
-  m_TagString: Hero
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   units: 5
   character: {fileID: 11400000, guid: 67f8bc1f0e6893c4291c834693d9ae34, type: 2}
-  machine: {fileID: 0}
 --- !u!136 &3366770728657827520
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -65,6 +61,7 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.41, z: 0}
+<<<<<<< HEAD
 --- !u!65 &279264258112888720
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117,6 +114,8 @@ MonoBehaviour:
   Exp: 0
   ExpToNext: 0
   Level: 0
+=======
+>>>>>>> parent of eb49d09 (Worked on like. Everything.)
 --- !u!1001 &7626996666350441086
 PrefabInstance:
   m_ObjectHideFlags: 0
