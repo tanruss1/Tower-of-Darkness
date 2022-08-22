@@ -33,13 +33,6 @@ public class Room_Basic : MonoBehaviour
     {
         heroes = new GameObject[3] { null, null, null };
 
-        GameObject[] objects = FindObjectsOfType<GameObject>();
-        foreach (GameObject _object in objects)
-        {
-            if (_object.GetComponent<GameManager>())
-                manager = _object.GetComponent<GameManager>();
-        }
-
     }
 
     private void Update()

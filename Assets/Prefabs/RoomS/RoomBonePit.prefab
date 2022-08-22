@@ -6940,7 +6940,7 @@ MonoBehaviour:
   MaxTimer: 10
   Level: 1
   Minion: {fileID: 2364951357524420188, guid: 193c521d137972d46b8fe9f52fef1bf0, type: 3}
-  IsZombie: 0
+  type: 1
 --- !u!1 &2998741431658923449
 GameObject:
   m_ObjectHideFlags: 0

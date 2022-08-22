@@ -56,7 +56,7 @@ public class UnitStateMachine : MonoBehaviour
     public int Exp;
     public int ExpToNext;
     public int Level;
-    public bool isAlive;
+    public bool isAlive = true;
 
     [SerializeField]
     private const float hitTime = 0.5f;
@@ -129,6 +129,7 @@ public class UnitStateMachine : MonoBehaviour
         collider.center = new Vector3(0, 1, 0.5f + stats.Range / 1.5f);
 
         source.PlayOneShot(spawnSound);
+        isAlive = true;
     }
     
 
@@ -384,6 +385,13 @@ public class UnitStateMachine : MonoBehaviour
     {
         isAlive = false;
         this.gameObject.SetActive(false);
+        manager.Gold += Level;
+        manager.Gems += Level;
+    }
+
+    void Boss_Dead_Enter()
+    {
+        manager.gameObject.GetComponent<UIManager>().OpenGameOver();
     }
 
     //These functions apply changes to the character's stats
@@ -413,6 +421,7 @@ public class UnitStateMachine : MonoBehaviour
     public void GainExp(int exp)
     {
         Exp += exp;
+        Debug.Log(this.gameObject.name + " has gained " + exp + " experience. " + (ExpToNext - Exp).ToString() + " more to next level.");
         if (Exp >= ExpToNext)
             LevelUp();
     }
@@ -434,7 +443,7 @@ public class UnitStateMachine : MonoBehaviour
             MaxHealth += 1;
             Attack += 1;
             Exp -= ExpToNext;
-            ExpToNext += 10;
+            ExpToNext += 5;
         }
         else if (Type == UnitType.Boss)
         {

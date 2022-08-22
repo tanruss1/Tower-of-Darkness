@@ -41,8 +41,8 @@ namespace Units
         
         public void Goblin()
         {
-            Health = 5;
-            MaxHealth = 5;
+            Health = 3;
+            MaxHealth = 3;
             Attack = 2;
             Speed = 3;
             Range = 1;
@@ -51,8 +51,8 @@ namespace Units
 
         public void Zombie()
         {
-            Health = 10;
-            MaxHealth =10;
+            Health = 6;
+            MaxHealth =6;
             Attack = 2;
             Speed = 1;
             Range = 1;

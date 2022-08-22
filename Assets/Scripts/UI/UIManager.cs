@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     //Which menu to pop up
     private GameObject popUpBox;
 
+    [SerializeField]
+    public GameObject GameOverMenu;
+
     //fields for Upgrade Room Menu
     [SerializeField]
     public GameObject UpgradeRoomMenuObj;
@@ -72,5 +75,15 @@ public class UIManager : MonoBehaviour
     public void CloseUpgradeRoomMenu()
     {
         UpgradeRoomMenuObj.SetActive(false);
+    }
+
+    public void OpenGameOver()
+    {
+        GameOverMenu.SetActive(true);
+    }
+
+    public void EndGame()
+    {
+        Application.Quit();
     }
 }

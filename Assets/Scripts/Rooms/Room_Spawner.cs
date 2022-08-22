@@ -12,8 +12,10 @@ public class Room_Spawner : Room_Basic
     [SerializeField]
     GameObject Minion;
     [SerializeField]
-    bool IsZombie = false;
+    public enum MinionType {Goblin, Skeleton, Zombie};
 
+    [SerializeField]
+    MinionType type;
 
     void Start()
     {
@@ -24,19 +26,32 @@ public class Room_Spawner : Room_Basic
                 manager = _object.GetComponent<GameManager>();
         }
 
-        SpawnTimer = MaxTimer;
-        canBuild = false;
-
-        if (IsZombie)
+        
+        if (type == MinionType.Zombie)
         {
+            MainText = "Upgrade zombie spawner";
+            MaxTimer = 20f;
             Upgrade1 = IncreaseSpawnChance;
             Upgrade1_Text = "Increase Spawn Chance";
         }
         else
         {
+            if (type == MinionType.Skeleton)
+            {
+                MainText = "Upgrade skeleton spawner";
+                MaxTimer = 15f;
+            }
+            else
+            {
+                MainText = "Upgrade goblin spawner";
+                MaxTimer = 10f;
+            }
             Upgrade1 = IncreaseSpawnRate;
             Upgrade1_Text = "Increase Spawn Rate";
         }
+
+        SpawnTimer = MaxTimer;
+        canBuild = false;
 
         Upgrade2 = IncreaseLevel;
         Upgrade2_Text = "Increase Level";

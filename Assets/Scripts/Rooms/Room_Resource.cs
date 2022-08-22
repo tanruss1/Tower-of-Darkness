@@ -10,13 +10,22 @@ public class Room_Resource : Room_Basic
     [SerializeField]
     int level = 1;
     [SerializeField]
-    float TimerMax;
+    float TimerMax = 10f;
 
     float Timer = 10f;
     
     void Start()
     {
         canBuild = false;
+        if (GoldOrGems)
+            MainText = "Upgrade gold mine";
+        else
+            MainText = "Upgrade gem mine";
+
+        Upgrade1 = LevelUp;
+        Upgrade1_Text = "Level up";
+        Upgrade2 = SpeedUp;
+        Upgrade2_Text = "Speed up";
     }
 
     // Update is called once per frame

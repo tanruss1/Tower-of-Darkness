@@ -6939,7 +6939,7 @@ MonoBehaviour:
   UpgradeCost: 10
   GoldOrGems: 1
   level: 1
-  TimerMax: 0
+  TimerMax: 10
 --- !u!1 &2998741431658923449
 GameObject:
   m_ObjectHideFlags: 0
