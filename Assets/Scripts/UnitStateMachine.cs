@@ -10,12 +10,10 @@ using Units;
 [RequireComponent(typeof(CharacterCreation))]
 public class UnitStateMachine : MonoBehaviour
 {
-    public enum UnitType { Boss, Minion, Hero};
+    public enum UnitType { Boss, Minion, Hero };
 
     [SerializeField]
     public UnitType Type = UnitType.Boss;
-    [SerializeField]
-    GameManager manager;
 
     //Define the states
     public enum states
@@ -38,6 +36,7 @@ public class UnitStateMachine : MonoBehaviour
     private int speed = 3;
 
     Rigidbody rb;
+    GameManager manager;
     private float timer = 0.5f;
     private float cooldown = 0.5f;
     private GameObject[] targets = { null, null, null, null };
@@ -47,6 +46,7 @@ public class UnitStateMachine : MonoBehaviour
 
     bool DarkAuraActive = false;
     float DarkAuraTimer;
+    int DarkAuraBuff;
 
     public int Health;
     public int MaxHealth;
@@ -56,9 +56,24 @@ public class UnitStateMachine : MonoBehaviour
     public int Exp;
     public int ExpToNext;
     public int Level;
-    public bool isAlive = true;
+    public bool isAlive;
 
-    private float DamageTimer = 0f;
+    [SerializeField]
+    private const float hitTime = 0.5f;
+    private float hitTimeRemaining = 0.5f;
+
+    [SerializeField]
+    AudioSource source;
+    [SerializeField]
+    AudioClip hitSound;
+    [SerializeField]
+    AudioClip deadSound;
+    [SerializeField]
+    AudioClip spawnSound;
+    [SerializeField]
+    AudioClip attackSound;
+    [SerializeField]
+    AudioClip[] footsteps;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +82,8 @@ public class UnitStateMachine : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         collider = this.GetComponent<BoxCollider>();
         stats = GetComponent<CharacterCreation>().character;
-        manager = GameObject.FindWithTag("Manager").GetComponent<GameManager>();
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        source = manager.gameObject.GetComponent<AudioSource>();
 
         //Load the main Enter functions into the state machine
         stateEnter.Add(states.Idle, Idle_Enter);
@@ -77,7 +93,7 @@ public class UnitStateMachine : MonoBehaviour
         //stateEnter.Add(states.Dead, Dead_Enter);
 
         //Load the main Update functions into the state machine
-        //stateUpdate.Add(states.Idle, Idle_Update);
+        stateUpdate.Add(states.Idle, Idle_Update);
         //stateUpdate.Add(states.Walking, Walking_Update);
         stateUpdate.Add(states.Attack, Attack_Update);
         stateUpdate.Add(states.Hit, Hit_Update);
@@ -110,8 +126,11 @@ public class UnitStateMachine : MonoBehaviour
         cooldown = 1.5f - (stats.Speed * 0.25f);
         timer = cooldown;
         collider.size = new Vector3(0.5f, 0.5f, stats.Range * 1.25f);
-        collider.center = new Vector3(0, 1, 0.5f + (float)stats.Range / 1.5f);
+        collider.center = new Vector3(0, 1, 0.5f + stats.Range / 1.5f);
+
+        source.PlayOneShot(spawnSound);
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -124,8 +143,10 @@ public class UnitStateMachine : MonoBehaviour
             if (DarkAuraTimer <= 0)
                 EndDarkAura();
         }
-        if (DamageTimer > 0)
-            DamageTimer -= Time.deltaTime;
+        if (hitTimeRemaining > 0)
+        {
+            hitTimeRemaining -= Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -199,22 +220,20 @@ public class UnitStateMachine : MonoBehaviour
     //The following three functions will be called at start depending on which version of the statemachine is being initialized
     void Boss()
     {
+        stateEnter.Add(states.Dead, Dead_Enter);
         stateUpdate.Add(states.Walking, Boss_Walking_Update);
-        stateEnter.Add(states.Dead, Boss_Dead_Enter);
     }
 
     void Minion()
     {
-        stateUpdate.Add(states.Walking, Walking_Update);
-        stateUpdate.Add(states.Idle, Idle_Update);
         stateEnter.Add(states.Dead, Dead_Enter);
+        stateUpdate.Add(states.Walking, Walking_Update);
     }
 
     void Hero()
     {
-        stateUpdate.Add(states.Walking, Walking_Update);
-        stateUpdate.Add(states.Idle, Idle_Update);
         stateEnter.Add(states.Dead, Hero_Dead_Enter);
+        stateUpdate.Add(states.Walking, Walking_Update);
     }
 
     //The following function controls the state machine
@@ -230,17 +249,17 @@ public class UnitStateMachine : MonoBehaviour
     //Enter functions
     void Idle_Enter()
     {
-        //Debug.Log("sittingstill");
+        Debug.Log("sittingstill");
     }
 
     void Walking_Enter()
     {
-        //Debug.Log("I'm Walking here");
+        Debug.Log("I'm Walking here");
     }
 
     void Attack_Enter()
     {
-        //Debug.Log("attacking!");
+        Debug.Log("attacking!");
     }
 
     void Hit_Enter()
@@ -250,6 +269,7 @@ public class UnitStateMachine : MonoBehaviour
 
     void Dead_Enter()
     {
+        source.PlayOneShot(deadSound);
         Debug.Log(this.gameObject.name + " is dead");
         Destroy(this.gameObject);
     }
@@ -264,7 +284,12 @@ public class UnitStateMachine : MonoBehaviour
             {
                 if (targets[i] != null)
                 {
-                    ChangeState(states.Attack);
+                    if (!targets[i].GetComponent<UnitStateMachine>().isAlive || targets[i].GetComponent<UnitStateMachine>().curState == UnitStateMachine.states.Dead)
+                    {
+                        targets[i] = null;
+                    }
+                    else
+                        ChangeState(states.Attack);
                     timer = cooldown;
                     break;
                 }
@@ -276,7 +301,24 @@ public class UnitStateMachine : MonoBehaviour
 
     void Walking_Update()
     {
+        for (int i = 0; i < 4; i++)
+        {
+            if (targets[i] != null)
+            {
+                if (!targets[i].GetComponent<UnitStateMachine>().isAlive || targets[i].GetComponent<UnitStateMachine>().curState == UnitStateMachine.states.Dead)
+                {
+                    targets[i] = null;
+                }
+                else
+                    ChangeState(states.Attack);
+                timer = cooldown;
+                break;
+            }
+        }
+
+        System.Random rnd = new System.Random();
         rb.velocity = rb.transform.forward * speed;
+        //source.PlayOneShot(footsteps[rnd.Next(0, 6)]);
     }
 
     void Attack_Update()
@@ -284,14 +326,15 @@ public class UnitStateMachine : MonoBehaviour
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
-            timer = cooldown;
-            ChangeState(states.Idle);
-            Debug.Log(this.gameObject.name + " attacked");
+            source.PlayOneShot(attackSound);
+            Debug.Log("attacked");
             foreach (GameObject target in targets)
             {
                 if (target != null)
                     target.GetComponent<UnitStateMachine>().TakeDamage(Attack, this.gameObject);
             }
+            timer = cooldown;
+            ChangeState(states.Idle);
         }
     }
 
@@ -334,54 +377,36 @@ public class UnitStateMachine : MonoBehaviour
     //these functions are specific to a single enemurator
     void Boss_Walking_Update()
     {
-        ChangeState(states.Idle);
-    }
-    void Boss_Idle_Update()
-    {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                if (targets[i] != null)
-                {
-                    ChangeState(states.Attack);
-                    timer = cooldown;
-                    break;
-                }
-            }
-            timer = cooldown;
-        }
-    }
 
+    }
+    
     void Hero_Dead_Enter()
     {
-        Debug.Log(this.gameObject.name + " has died");
         isAlive = false;
         this.gameObject.SetActive(false);
-    }
-
-    void Boss_Dead_Enter()
-    {
-
     }
 
     //These functions apply changes to the character's stats
     public void TakeDamage(int damage, GameObject attacker)
     {
-        if (DamageTimer <= 0)
+        if (hitTimeRemaining <= 0)
         {
             Health -= damage;
-            DamageTimer = 0.5f;
-            //Debug.Log(this.gameObject + " has " + Health + " health remaining");
+            Debug.Log(this.gameObject + " has " + Health + " health remaining");
             if (Health <= 0)
             {
-                if (Type == UnitType.Minion && attacker.GetComponent<UnitStateMachine>())
-                    if (attacker.GetComponent<UnitStateMachine>().Type == UnitType.Hero)
-                        attacker.GetComponent<UnitStateMachine>().GainExp(Exp);
-                Debug.Log(attacker.name + " killed " + this.gameObject.name);
+                source.PlayOneShot(deadSound);
                 ChangeState(states.Dead);
+                if (attacker.GetComponent<UnitStateMachine>())
+                {
+                    UnitStateMachine unit = attacker.GetComponent<UnitStateMachine>();
+                    if (Type == UnitType.Minion && unit.Type == UnitType.Hero)
+                        unit.GainExp(Exp);
+                }
             }
+            else
+                source.PlayOneShot(hitSound);
+            hitTimeRemaining = hitTime;
         }
     }
 
@@ -411,14 +436,24 @@ public class UnitStateMachine : MonoBehaviour
             Exp -= ExpToNext;
             ExpToNext += 10;
         }
+        else if (Type == UnitType.Boss)
+        {
+            Health += 1;
+            MaxHealth += 1;
+            Attack += 1;
+            manager.FireballDamage += 1;
+            manager.PoisonGasDamage += (float)(1 / 3);
+            manager.DarkAuraBuff += 0.5f;
+        }
 
         Debug.Log(this.gameObject.name + " has reached level " + Level);
     }
 
-    public void DarkAura()
+    public void DarkAura(int buff)
     {
-        Attack += 2;
-        AttackSpeed += 2;
+        DarkAuraBuff = buff;
+        Attack += DarkAuraBuff;
+        AttackSpeed += DarkAuraBuff;
 
         DarkAuraActive = true;
         DarkAuraTimer = 10f;
@@ -427,10 +462,9 @@ public class UnitStateMachine : MonoBehaviour
 
     public void EndDarkAura()
     { 
-        Attack -= 2;
-        AttackSpeed -= 2;
+        Attack -= DarkAuraBuff;
+        AttackSpeed -= DarkAuraBuff;
 
         DarkAuraActive = false;
-        Debug.Log("Dark Aura ended on " + this.gameObject.name);
     }
 }

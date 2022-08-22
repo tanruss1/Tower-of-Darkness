@@ -106,6 +106,7 @@ public class Room_Trap : Room_Basic
             manager.Gold -= UpgradeCost;
             UpgradeCost =(int)(UpgradeCost * 1.5f);
             HitProb += 0.01f;
+            closeUpgradeMenu();
         }
     }
 
@@ -116,6 +117,7 @@ public class Room_Trap : Room_Basic
             manager.Gold -= UpgradeCost;
             UpgradeCost = (int)(UpgradeCost * 1.5f);
             HitChances += 1;
+            closeUpgradeMenu();
         }
     }
 
@@ -126,6 +128,7 @@ public class Room_Trap : Room_Basic
             manager.Gold -= UpgradeCost;
             UpgradeCost = (int)(UpgradeCost * 1.5f);
             Damage += 1;
+            closeUpgradeMenu();
         }
     }
 
@@ -136,6 +139,7 @@ public class Room_Trap : Room_Basic
             manager.Gold -= UpgradeCost;
             UpgradeCost = (int)(UpgradeCost * 1.5f);
             TimerMax -= 0.01f;
+            closeUpgradeMenu();
         }
     }
 }

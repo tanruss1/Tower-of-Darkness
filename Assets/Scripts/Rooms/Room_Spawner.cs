@@ -67,6 +67,7 @@ public class Room_Spawner : Room_Basic
             UpgradeCost = (int)(UpgradeCost * 1.5f);
             MaxTimer -= 0.5f;
             SpawnTimer -= 0.5f;
+            closeUpgradeMenu();
         }
     }
 
@@ -77,6 +78,7 @@ public class Room_Spawner : Room_Basic
             manager.Gold -= UpgradeCost;
             UpgradeCost = (int)(UpgradeCost * 1.5f);
             Level += 1;
+            closeUpgradeMenu();
         }
     }
 
@@ -87,6 +89,7 @@ public class Room_Spawner : Room_Basic
             manager.Gold -= UpgradeCost;
             UpgradeCost = (int)(UpgradeCost * 1.5f);
             manager.ZombieSpawnChance += 0.1f;
+            closeUpgradeMenu();
         }
     }
 }

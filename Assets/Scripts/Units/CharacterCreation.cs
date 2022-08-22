@@ -8,7 +8,7 @@ public class CharacterCreation : MonoBehaviour
 {
 
     public Characters.CharacterTypes units;
-    public Characters character;
+    public Characters character; 
 
     public UnitStateMachine machine;
     

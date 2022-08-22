@@ -25,6 +25,7 @@ public class Room_Basic : MonoBehaviour
     bool PoisonGasActive = false;
     float PoisonTimer = 1f;
     int PoisonCount = 0;
+    int PoisonDamage = 1;
     public GameObject[] heroes;
     public int UpgradeCost = 10;
 
@@ -51,7 +52,7 @@ public class Room_Basic : MonoBehaviour
             {
                 foreach (GameObject hero in heroes)
                 {
-                    hero.GetComponent<UnitStateMachine>().TakeDamage(1, this.gameObject);
+                    hero.GetComponent<UnitStateMachine>().TakeDamage(PoisonDamage, this.gameObject);
                 }
                 PoisonTimer = 1f;
                 PoisonCount += 1;
@@ -88,17 +89,18 @@ public class Room_Basic : MonoBehaviour
         }
     }
 
-    public void Fireball()
+    public void Fireball(int damage)
     {
         FireballParticles.Play();
         foreach (GameObject hero in heroes)
         {
-            hero.GetComponent<UnitStateMachine>().TakeDamage(5, this.gameObject);
+            hero.GetComponent<UnitStateMachine>().TakeDamage(damage, this.gameObject);
         }
     }
 
-    public void PoisonGas()
+    public void PoisonGas(int damage)
     {
+        PoisonDamage = damage;
         PoisonGasActive = true;
         PoisonGasParticles.Play();
     }
@@ -119,5 +121,10 @@ public class Room_Basic : MonoBehaviour
             return true;
         else 
             return false;
+    }
+
+    public void closeUpgradeMenu()
+    {
+        manager.gameObject.GetComponent<UIManager>().CloseUpgradeRoomMenu();
     }
 }

@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int DarkAuraCost = 20;
 
+    public int FireballDamage = 5;
+    public float PoisonGasDamage = 1f;
+    public float DarkAuraBuff = 2f;
+
     [SerializeField]
     public float ZombieSpawnChance = 0f;
 
@@ -36,6 +40,13 @@ public class GameManager : MonoBehaviour
     bool[] HeroesAlive = new bool[3];
     float[] HeroSpawnTimer = new float[3] { 10, 10, 10 };
     GameObject[] Minions;
+
+    [SerializeField]
+    AudioClip fireballSound;
+    [SerializeField]
+    AudioClip poisonGasSound;
+    [SerializeField]
+    AudioClip darkAuraSound;
 
     private void Start()
     {
@@ -60,7 +71,7 @@ public class GameManager : MonoBehaviour
                         CastPoisonGas(target);
                     else if (DarkAuraReady)
                         CastDarkAura();
-                    else if (target.GetComponent<Room_Basic>().canBuild)
+                    else if (!target.GetComponent<Room_Basic>().canBuild)
                     {
                         this.GetComponent<UIManager>().UpgradeRoomMenu(room.MainText, room.Upgrade1_Text, "Cost: " + room.UpgradeCost, room.Upgrade1, room. Upgrade2_Text, room.Upgrade2);
                     }
@@ -166,7 +177,8 @@ public class GameManager : MonoBehaviour
 
     void CastFireball(GameObject target)
     {
-        target.GetComponent<Room_Basic>().Fireball();
+        this.gameObject.GetComponent<AudioSource>().PlayOneShot(fireballSound);
+        target.GetComponent<Room_Basic>().Fireball(FireballDamage);
         FireballReady = false;
     }
 
@@ -184,7 +196,8 @@ public class GameManager : MonoBehaviour
 
     void CastPoisonGas(GameObject target)
     {
-        target.GetComponent<Room_Basic>().PoisonGas();
+        this.gameObject.GetComponent<AudioSource>().PlayOneShot(poisonGasSound);
+        target.GetComponent<Room_Basic>().PoisonGas((int)PoisonGasDamage);
         PoisonGasReady = false;
     }
 
@@ -203,10 +216,11 @@ public class GameManager : MonoBehaviour
 
     void CastDarkAura()
     {
+        this.gameObject.GetComponent<AudioSource>().PlayOneShot(darkAuraSound);
         Minions = GameObject.FindGameObjectsWithTag("Minion");
         foreach (GameObject minion in Minions)
         {
-            minion.GetComponent<UnitStateMachine>().DarkAura();
+            minion.GetComponent<UnitStateMachine>().DarkAura((int)DarkAuraBuff);
         }
         DarkAuraReady = false;
         Debug.Log("Dark Aura Cast");

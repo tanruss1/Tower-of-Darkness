@@ -45,6 +45,7 @@ public class Room_Resource : Room_Basic
             manager.Gold -= UpgradeCost;
             UpgradeCost = (int)(UpgradeCost * 1.5f);
             level += 1;
+            closeUpgradeMenu();
         }
     }
 
@@ -56,6 +57,7 @@ public class Room_Resource : Room_Basic
             UpgradeCost = (int)(UpgradeCost * 1.5f);
             TimerMax -= 0.5f;
             Timer -= 0.5f;
+            closeUpgradeMenu();
         }
     }
 }

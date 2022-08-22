@@ -117,6 +117,20 @@ MonoBehaviour:
   Exp: 0
   ExpToNext: 0
   Level: 0
+  isAlive: 0
+  source: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 7f1b7f91543f3b94b8fd71b090939f77, type: 3}
+  deadSound: {fileID: 8300000, guid: 2dee61de03264244bbfe44100047f646, type: 3}
+  spawnSound: {fileID: 8300000, guid: c8e495ed1403e6f4c8151fa276824ba1, type: 3}
+  attackSound: {fileID: 8300000, guid: d7ea5a3e0e589034caa3523c19c60c08, type: 3}
+  footsteps:
+  - {fileID: 8300000, guid: 1b3878f6e570794478e58e2a54898f8d, type: 3}
+  - {fileID: 8300000, guid: 21b42baa9f8ae7745aa693e44dc97ba0, type: 3}
+  - {fileID: 8300000, guid: c77b5a5eb142a1f4d96823236a7353ce, type: 3}
+  - {fileID: 8300000, guid: 3cc32e60dfe5e994bb88ae6a7f1bab7e, type: 3}
+  - {fileID: 8300000, guid: 7e0db4e9e148be847a169831ad9c8b25, type: 3}
+  - {fileID: 8300000, guid: 54403b2d332073d43b66223f215238bc, type: 3}
+  - {fileID: 8300000, guid: 05b4e961777f7cc4aacf9638b50f84db, type: 3}
 --- !u!1001 &5676607178474991456
 PrefabInstance:
   m_ObjectHideFlags: 0
